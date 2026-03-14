@@ -1,0 +1,137 @@
+{
+  "name": "agentqx",
+  "version": "0.0.1",
+  "description": "Give it a URL, get a battle-tested E2E test suite. CLI + MCP server that explores, generates, runs, and fixes Playwright tests until all pass.",
+  "author": {
+    "name": "sijeeshmiziha",
+    "email": "sijeeshmonbalan@gmail.com",
+    "url": "https://github.com/sijeeshmiziha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sijeeshmiziha/agentqx.git"
+  },
+  "homepage": "https://github.com/sijeeshmiziha/agentqx",
+  "bugs": {
+    "url": "https://github.com/sijeeshmiziha/agentqx/issues"
+  },
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "agentqx": "./dist/cli/index.js"
+  },
+  "scripts": {
+    "build": "npm run typecheck && npm run lint && tsup",
+    "dev": "tsup --watch",
+    "test": "playwright test",
+    "test:e2e": "playwright test",
+    "test:unit": "vitest run tests/unit",
+    "test:integration": "vitest run tests/integration",
+    "test:all": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "example": "tsx",
+    "example:interactive": "tsx examples/run.ts",
+    "example:quick-start": "tsx examples/quick-start/index.ts",
+    "example:cli-loop": "tsx examples/cli-loop/index.ts",
+    "example:cli-explore-generate-run": "tsx examples/cli-explore-generate-run/index.ts",
+    "example:mcp-workflow": "tsx examples/mcp-workflow/index.ts",
+    "example:programmatic": "tsx examples/programmatic-api/index.ts",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src/",
+    "lint:fix": "eslint src/ --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "release:patch": "npm version patch && git push origin main --tags",
+    "release:minor": "npm version minor && git push origin main --tags",
+    "release:major": "npm version major && git push origin main --tags",
+    "prepublishOnly": "npm run typecheck && npm run lint && npm run format:check && npm run test:unit && npm run build",
+    "prepare": "husky",
+    "mcp": "node --env-file=.env dist/lib/mcp/server/stdio.js",
+    "mcp:dev": "tsx src/lib/mcp/server/stdio.ts"
+  },
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./mcp": {
+      "import": {
+        "types": "./dist/lib/mcp/server/index.d.ts",
+        "default": "./dist/lib/mcp/server/index.js"
+      },
+      "require": {
+        "types": "./dist/lib/mcp/server/index.d.cts",
+        "default": "./dist/lib/mcp/server/index.cjs"
+      }
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "playwright",
+    "testing",
+    "e2e",
+    "mcp",
+    "ai",
+    "autonomous",
+    "test-generation",
+    "autofix",
+    "claude",
+    "openai",
+    "gemini",
+    "ai-coding",
+    "codex",
+    "cursor",
+    "agents",
+    "tools",
+    "model-context-protocol",
+    "autonomous-testing"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.39.0",
+    "@modelcontextprotocol/sdk": "^1.27.1",
+    "@google/genai": "^1.0.0",
+    "openai": "^4.104.0",
+    "zod": "^3.25.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.17.0",
+    "@playwright/test": "^1.49.0",
+    "@types/node": "^22.10.0",
+    "eslint": "^9.17.0",
+    "eslint-config-prettier": "^10.1.8",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
+    "playwright": "^1.49.0",
+    "prettier": "^3.8.1",
+    "tsup": "^8.3.5",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.18.0",
+    "@vitest/coverage-v8": "^3.0.0",
+    "vitest": "^3.0.0"
+  },
+  "optionalDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "^4.40.0"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,yml,yaml}": [
+      "prettier --write"
+    ]
+  }
+}
