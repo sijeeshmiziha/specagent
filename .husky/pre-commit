@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+# Skip lint-staged when slow or when fixing up: SKIP_LINT_STAGED=1 git commit -m "..."
+if [ -n "$SKIP_LINT_STAGED" ]; then
+  echo "Skipping lint-staged (SKIP_LINT_STAGED=1)."
+  exit 0
+fi
+npx lint-staged
