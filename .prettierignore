@@ -1,0 +1,17 @@
+node_modules
+dist
+coverage
+.ref
+snapshots
+test-results
+playwright-report
+blob-report
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+*.tsv
+site_map.json
+.changeset/*.md
+*.d.ts
+*.d.cts
+*.d.mts
